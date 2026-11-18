@@ -1,0 +1,123 @@
+.sidebar {
+  width: var(--sidebar-w);
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 24px 16px 16px;
+  background: var(--bg-sidebar);
+}
+
+.brand {
+  margin-bottom: 18px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 700;
+}
+
+.newButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.newButton:hover {
+  background: var(--accent-hover);
+}
+
+.bottom {
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.navLink:hover {
+  background: var(--bg-hover);
+}
+
+.active,
+.active:hover {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.caption {
+  padding-top: 4px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.mock {
+  margin-top: 8px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--warn-bg);
+  font-size: 11px;
+  color: var(--warn-fg);
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 8px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+}
+
+.account:hover {
+  background: var(--bg-hover);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.accountName {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* На узких экранах сайдбар выезжает поверх контента. */
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    z-index: 30;
+    inset: 0 auto 0 0;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .open {
+    transform: none;
+  }
+}

@@ -1,0 +1,33 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: var(--bg);
+  font-weight: 500;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.button:disabled {
+  opacity: 0.5;
+}
+
+.outline {
+  border-color: var(--border-strong);
+}
+
+.outline:hover:not(:disabled) {
+  background: var(--bg-muted);
+}
+
+.ghost {
+  padding: 0 4px;
+}
+
+.ghost:hover:not(:disabled) {
+  color: var(--accent-text);
+}

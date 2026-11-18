@@ -1,0 +1,14 @@
+.icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--bg-muted);
+  color: var(--text-3);
+}
+
+.note {
+  font-size: 12px;
+  color: var(--text-3);
+}

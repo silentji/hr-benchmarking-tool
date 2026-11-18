@@ -1,0 +1,78 @@
+.history {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  margin: 16px -8px 0;
+  padding: 0 8px;
+}
+
+.empty {
+  font-size: 13px;
+  color: var(--text-3);
+  padding-top: 8px;
+}
+
+.group + .group {
+  margin-top: 16px;
+}
+
+.label {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.item {
+  display: block;
+  margin-bottom: 4px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--text-2);
+}
+
+.item span {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.item:hover {
+  background: var(--bg-hover);
+}
+
+.active,
+.active:hover {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-weight: 500;
+}
+
+.skeleton {
+  height: 14px;
+  margin: 14px 12px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #ececee, #f6f6f7, #ececee);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.retry {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent-text);
+  font-size: 13px;
+  text-decoration: underline;
+}

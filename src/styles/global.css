@@ -1,0 +1,85 @@
+:root {
+  --font: Inter, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --text: #1a1a1a;
+  --text-2: #4b5563;
+  --text-3: #6b7280;
+
+  --border: #e5e7eb;
+  --border-strong: #d9dce1;
+  --border-soft: #eff0f2;
+
+  --bg: #ffffff;
+  --bg-sidebar: #f8f8f9;
+  --bg-muted: #f3f4f6;
+  --bg-hover: #eeeff1;
+
+  --accent: #ff6a2b;
+  --accent-hover: #f25a1a;
+  --accent-soft: #fff0e8;
+  --accent-text: #b83a0c;
+
+  --ok: #1f7a4d;
+  --danger: #c0392b;
+  --info-bg: #eaf2fe;
+  --info-fg: #2f5fc4;
+  --warn-bg: #fff7e0;
+  --warn-fg: #a8700d;
+
+  --sidebar-w: 252px;
+  --column-w: 864px;
+  --bp-narrow: 900px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

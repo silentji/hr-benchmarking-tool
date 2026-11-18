@@ -1,0 +1,32 @@
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--text-2);
+}
+
+.notice svg {
+  flex: none;
+  margin-top: 1px;
+}
+
+.info {
+  background: var(--info-bg);
+}
+
+.info svg {
+  color: var(--info-fg);
+}
+
+.warning {
+  background: var(--warn-bg);
+}
+
+.warning svg {
+  color: var(--warn-fg);
+}

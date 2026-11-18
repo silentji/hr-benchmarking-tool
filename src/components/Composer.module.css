@@ -1,0 +1,84 @@
+.composer {
+  flex: none;
+  width: min(var(--column-w), 100% - 48px);
+  margin: 0 auto;
+  padding: 8px 0 14px;
+}
+
+.box {
+  padding: 16px 16px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  background: var(--bg);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.box:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 106, 43, 0.12);
+}
+
+.box textarea {
+  display: block;
+  width: 100%;
+  min-height: 24px;
+  max-height: 200px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  resize: none;
+  background: transparent;
+  line-height: 24px;
+}
+
+.box textarea::placeholder {
+  color: var(--text-3);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.send {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: #eceef0;
+  color: var(--text-3);
+  transition: background 0.15s, color 0.15s;
+}
+
+.sendActive {
+  background: var(--accent);
+  color: #fff;
+}
+
+.sendActive:hover {
+  background: var(--accent-hover);
+}
+
+.error {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--danger);
+}
+
+.keys {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-3);
+}

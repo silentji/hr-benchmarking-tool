@@ -1,0 +1,129 @@
+.message {
+  min-width: 0;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+
+.name {
+  font-weight: 500;
+}
+
+.meta {
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.title {
+  margin-bottom: 12px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 600;
+}
+
+.text {
+  margin-bottom: 16px;
+  line-height: 1.55;
+  color: #374151;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: 16px;
+}
+
+.copy,
+.link,
+.save {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.copy {
+  font-size: 12px;
+  color: var(--text-3);
+}
+
+.copy:hover {
+  color: var(--text);
+}
+
+.link {
+  font-weight: 500;
+}
+
+.link:hover:not(:disabled) {
+  color: var(--accent-text);
+}
+
+.link:disabled {
+  opacity: 0.5;
+}
+
+.save {
+  color: var(--text-3);
+}
+
+.save:hover,
+.saved {
+  color: var(--accent-text);
+}
+
+.typing {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-3);
+}
+
+.dots {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.35;
+  animation: blink 1.2s infinite;
+}
+
+.dots i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dots i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 1;
+  }
+}
