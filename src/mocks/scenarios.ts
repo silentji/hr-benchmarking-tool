@@ -44,6 +44,27 @@ const enterprises = (): ApiAnalysis => ({
   actions: [{ type: 'ask', label: 'Найти отклонения', question: 'Найди отклонения в доступных данных.' }],
 })
 
+const factVsPlanChart = (): ApiAnalysis => ({
+  context: CONTEXT_ALL,
+  title: 'На «Севере» факт заметнее всего отличается от плана',
+  text: 'Разница — +1,9 п.п. На «Юге» — +0,2 п.п., на «Западе» — −0,3 п.п.',
+  chart: {
+    type: 'bar',
+    title: 'Текучесть за сентябрь, %',
+    unit: '%',
+    series: [
+      { key: 'fact', label: 'Факт' },
+      { key: 'plan', label: 'План' },
+    ],
+    categories: [
+      { label: 'Север', values: { fact: 8.4, plan: 6.5 } },
+      { label: 'Юг', values: { fact: 6.2, plan: 6.0 } },
+      { label: 'Запад', values: { fact: 5.2, plan: 5.5 } },
+    ],
+  },
+  actions: [{ type: 'ask', label: 'Сравнить с августом', question: 'А что изменилось относительно августа?' }],
+})
+
 const insufficientData = (): ApiAnalysis => ({
   status: 'insufficient_data',
   context: { period: 'Сентябрь 2026', enterprises: ['подразделения'] },
@@ -81,6 +102,7 @@ export function analyze(question: string): ApiAnalysis | 'fail' {
   const q = question.toLowerCase()
   if (/подразделен/.test(q)) return insufficientData()
   if (/сбой|ошибк/.test(q)) return 'fail'
+  if (/график|диаграмм/.test(q)) return factVsPlanChart()
   if (/отклонен|внимани|план/.test(q)) return deviations()
   if (/предприят/.test(q)) return enterprises()
   if (/август|измен|динамик/.test(q)) return changeVsAugust()

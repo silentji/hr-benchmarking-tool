@@ -1,4 +1,4 @@
-import type { UserChatMessage } from '../types/chat'
+import type { UserChatMessage } from '../../types/chat'
 import styles from './UserMessage.module.css'
 
 export default function UserMessage({ message }: { message: UserChatMessage }) {

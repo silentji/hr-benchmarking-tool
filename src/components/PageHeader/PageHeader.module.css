@@ -1,6 +1,7 @@
 .header {
   flex: none;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 12px;
   height: 64px;
@@ -9,10 +10,10 @@
 }
 
 .title {
-  flex: 1;
   min-width: 0;
   overflow: hidden;
   white-space: nowrap;
+  width: fit-content;
   text-overflow: ellipsis;
   font-size: 14px;
   font-weight: 500;
@@ -30,6 +31,14 @@
   border: 0;
   border-radius: 8px;
   background: transparent;
+}
+
+.mock {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--warn-bg);
+  font-size: 11px;
+  color: var(--warn-fg);
 }
 
 @media (max-width: 900px) {

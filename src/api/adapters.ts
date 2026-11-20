@@ -4,15 +4,27 @@ import type {
   Conversation,
   MessageAction,
   TableData,
+  ChartData,
   UserChatMessage,
 } from '../types/chat'
 import type {
   ApiAction,
   ApiAnalysis,
+  ApiChart,
   ApiConversation,
   ApiMessage,
   ApiTable,
 } from './types'
+
+function normalizeChart(c: ApiChart | undefined): ChartData | null {
+  if (!c || (c.type && c.type !== 'bar') || c.series.length === 0 || c.categories.length === 0) return null
+  return {
+    title: c.title ?? null,
+    unit: c.unit ?? '',
+    series: c.series.map((s) => ({ key: s.key, label: s.label })),
+    categories: c.categories.map((cat) => ({ label: cat.label, values: cat.values })),
+  }
+}
 
 export function normalizeConversation(raw: ApiConversation): Conversation {
   return {
@@ -52,6 +64,7 @@ function baseAssistant(id: string, status: AssistantChatMessage['status']): Assi
     title: null,
     text: '',
     table: null,
+    chart: null,
     notice: null,
     actions: [],
     isSaved: false,
@@ -86,6 +99,7 @@ function makeAssistant(raw: ApiMessage): AssistantChatMessage {
     title: a.title ?? null,
     text: a.text ?? '',
     table: normalizeTable(a.table),
+    chart: normalizeChart(a.chart),
     notice: a.notice ? { kind: a.notice.kind, text: a.notice.text } : null,
     actions: (a.actions ?? []).map(normalizeAction).filter((x): x is MessageAction => x !== null),
     isSaved: Boolean(raw.is_saved),

@@ -1,5 +1,5 @@
-import type { CellValue, TableColumn, TableData } from '../types/chat'
-import { cx } from '../utils/cx'
+import type { CellValue, TableColumn, TableData } from '../../types/chat'
+import { cx } from '../../utils/cx'
 import styles from './AnalysisTable.module.css'
 
 function formatCell(v: CellValue | undefined): string {

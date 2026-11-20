@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import type { AssistantChatMessage, MessageAction } from '../types/chat'
-import { copyText } from '../utils/clipboard'
-import { cx } from '../utils/cx'
-import AnalysisTable from './AnalysisTable'
-import Button from './Button'
-import Notice from './Notice'
+import type { AssistantChatMessage, MessageAction } from '../../types/chat'
+import { copyText } from '../../utils/clipboard'
+import { cx } from '../../utils/cx'
 import {
   BookmarkIcon,
   CheckIcon,
@@ -14,8 +11,12 @@ import {
   DatabaseIcon,
   RefreshIcon,
   SparkleIcon,
-} from './icons'
+} from '../icons'
 import styles from './AssistantMessage.module.css'
+import Button from '../Button/Button'
+import AnalysisTable from '../AnalysisTable/AnalysisTable'
+import Notice from '../Notice/Notice'
+import AnalysisChart from '../AnalysisChart/AnalysisChart'
 
 function toPlainText(m: AssistantChatMessage): string {
   const blocks: Array<string | null> = [m.title, m.text]
@@ -25,10 +26,17 @@ function toPlainText(m: AssistantChatMessage): string {
     table.rows.forEach((r) => lines.push(table.columns.map((c) => r.cells[c.key] ?? '').join('\t')))
     blocks.push(lines.join('\n'))
   }
+  const { chart } = m
+  if (chart) {
+    const lines = [['', ...chart.series.map((s) => s.label)].join('\t')]
+    chart.categories.forEach((c) => lines.push([c.label, ...chart.series.map((s) => c.values[s.key] ?? '')].join('\t')))
+    blocks.push([chart.title, lines.join('\n')].filter(Boolean).join('\n'))
+  }
   if (m.notice) blocks.push(m.notice.text)
   return blocks.filter(Boolean).join('\n\n')
 }
 
+// Навигация только по внутренним путям приложения.
 const isInternalPath = (to: string) => to.startsWith('/') && !to.startsWith('//')
 
 function Author() {
@@ -90,6 +98,7 @@ export default function AssistantMessage({ message, busy, onAsk, onRetry, onTogg
     )
   }
 
+  // В состояниях «мало данных» и предупреждения действия — полноценные кнопки, а не ссылки.
   const asButtons = message.status === 'insufficient_data' || message.notice?.kind === 'warning'
 
   const runAction = (action: MessageAction) => {
@@ -114,6 +123,7 @@ export default function AssistantMessage({ message, busy, onAsk, onRetry, onTogg
       {message.meta && <div className={styles.meta}>{message.meta}</div>}
       {message.title && <h3 className={styles.title}>{message.title}</h3>}
       {message.text && <p className={styles.text}>{message.text}</p>}
+      {message.chart && <AnalysisChart chart={message.chart} />}
       {message.table && <AnalysisTable table={message.table} />}
       {message.notice && <Notice notice={message.notice} />}
 
