@@ -1,6 +1,6 @@
-import type { NoticeData } from '../types/chat'
-import { cx } from '../utils/cx'
-import { DatabaseIcon, WarningIcon } from './icons'
+import type { NoticeData } from '../../types/chat'
+import { cx } from '../../utils/cx'
+import { DatabaseIcon, WarningIcon } from '../icons'
 import styles from './Notice.module.css'
 
 export default function Notice({ notice }: { notice: NoticeData }) {

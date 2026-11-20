@@ -1,9 +1,9 @@
 import { Fragment, type ReactNode } from 'react'
-import Button from '../components/Button'
-import PageHeader from '../components/PageHeader'
-import ScrollArea from '../components/ScrollArea'
-import StateMessage, { StateTitle } from '../components/StateMessage'
+import ScrollArea from '../components/ScrollArea/ScrollArea'
 import styles from './StubPage.module.css'
+import PageHeader from '../components/PageHeader/PageHeader'
+import StateMessage, { StateTitle } from '../components/StateMessage/StateMessage'
+import Button from '../components/Button/Button'
 
 interface StubPageProps {
   title: string

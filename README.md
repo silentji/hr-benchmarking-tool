@@ -1,75 +1,47 @@
-# React + TypeScript + Vite
+# Бенчмаркинг HR-показателей — фронтенд
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Чат с LLM-аналитиком для локального сервиса бенчмаркинга HR-показателей.
+React 19 + TypeScript + Vite, Redux Toolkit, Axios, React Router, CSS-модули.
 
-Currently, two official plugins are available:
+## Запуск
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev:mock     # ответы берутся из src/mocks
+npm run dev          # /api/* проксируется на VITE_PROXY_TARGET (по умолчанию http://localhost:8000)
+npm run build        # tsc -b && vite build
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Моки (`src/mocks`)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Подключаются в `api/client.ts` только при `VITE_USE_MOCKS=true` (режим `dev:mock`, файл `.env.mock`) и не попадают в
+прод-бандл. Подменяется транспорт axios, поэтому интерцепторы, thunk-и и обработка ошибок работают как с настоящим бэком.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Что можно проверить без бэка — зависит от текста вопроса (`scenarios.ts`):
 
+| Вопрос содержит | Результат |
+|---|---|
+| «подразделен» | состояние «не хватает данных» (с кнопками «Сравнить предприятия», «Перейти к данным») |
+| «сбой» / «ошибк» | ошибка анализа; «Повторить попытку» срабатывает со второго раза |
+| «отклонен» / «внимани» / «план» | таблица с подсветкой и пояснением |
+| «предприят» | сравнение предприятий |
+| «август» / «измен» / «динамик» | изменение к августу |
+| «график» / «диаграмм» | график с пояснением |
+| «север» / «текучест» | короткий ответ |
+| иное | подсказка «Уточните запрос» |
+
+История диалогов в моках заполнена сидами (сегодня / вчера / предыдущие 7 дней). Данные живут до перезагрузки страницы.
+
+## Структура
+
+```
+src/
+  api/          axios-клиент, эндпоинты, DTO бэка (types.ts) и их перевод в модели UI (adapters.ts)
+  store/        Redux: conversations (история, поиск), chat (сообщения, отправка, сохранение), ui (сайдбар)
+  mocks/        моки для UI/UX тестов
+  components/   компоненты
+  pages/        ChatPage, StubPage («Данные» и «Дашборды» — заглушки «в разработке»)
+  hooks/        useAsk — отправка вопроса из любого места чата
+  utils/        группировка истории по дням, даты, буфер обмена
+  types/        модели UI
 ```

@@ -1,10 +1,11 @@
-import type { AskFn } from '../hooks/useAsk'
-import { setDraft } from '../store/chatSlice'
-import { useAppDispatch } from '../store/hooks'
-import Button from './Button'
-import { BarChartIcon, SparkleIcon } from './icons'
+import type { AskFn } from '../../hooks/useAsk'
+import { setDraft } from '../../store/chatSlice'
+import { useAppDispatch } from '../../store/hooks'
+import Button from '../Button/Button'
+import { BarChartIcon, SparkleIcon } from '../icons'
 import styles from './WelcomeScreen.module.css'
 
+// Карточки подставляют заготовку в поле ввода — период и предприятие пользователь дописывает сам.
 const CARDS = [
   { title: 'Сравнить предприятия', subtitle: 'За один и тот же период', prompt: 'Сравни предприятия по текучести за ' },
   { title: 'Сравнить с планом', subtitle: 'Найти различия в значениях', prompt: 'Сравни факт с планом по текучести за ' },

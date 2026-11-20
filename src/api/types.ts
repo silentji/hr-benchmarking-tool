@@ -17,6 +17,26 @@ export interface ApiTable {
   rows: ApiTableRow[]
 }
 
+export interface ApiChartSeries {
+  key: string
+  label: string
+}
+
+export interface ApiChartCategory {
+  label: string
+  values: Record<string, number | null>
+}
+
+
+export interface ApiChart {
+  type?: 'bar'
+  title?: string
+
+  unit?: string
+  series: ApiChartSeries[]
+  categories: ApiChartCategory[]
+}
+
 export interface ApiAction {
   type: 'ask' | 'navigate'
   label: string
@@ -30,6 +50,7 @@ export interface ApiAnalysis {
   title?: string
   text?: string
   table?: ApiTable
+  chart?: ApiChart
   notice?: { kind: 'info' | 'warning'; text: string }
   actions?: ApiAction[]
 }

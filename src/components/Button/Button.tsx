@@ -1,10 +1,11 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { cx } from '../utils/cx'
 import styles from './Button.module.css'
+import { cx } from '../../utils/cx'
 
 interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
   variant?: 'outline' | 'ghost'
+  /** Если задан, рендерится ссылкой на внутренний маршрут. */
   to?: string
   children: ReactNode
 }

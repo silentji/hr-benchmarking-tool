@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
-import type { AssistantChatMessage, ChatMessage } from '../types/chat'
-import AssistantMessage from './AssistantMessage'
-import UserMessage from './UserMessage'
 import styles from './MessageList.module.css'
+import type { AssistantChatMessage, ChatMessage } from '../../types/chat'
+import UserMessage from '../UserMessage/UserMessage'
+import AssistantMessage from '../AssistantMessage/AssistantMessage'
 
 interface MessageListProps {
   messages: ChatMessage[]

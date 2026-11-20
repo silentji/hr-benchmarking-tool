@@ -39,7 +39,7 @@ export const SearchIcon = (p: IconProps) => (
 
 export const SparkleIcon = (p: IconProps) => (
   <Icon {...p}>
-    <path d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7z" />
+    <path d="M12 3c.6 5.9 2.4 8.2 7 9-4.6.8-6.4 3.1-7 9-.6-5.9-2.4-8.2-7-9 4.6-.8 6.4-3.1 7-9z" />
   </Icon>
 )
 

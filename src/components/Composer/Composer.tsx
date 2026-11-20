@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react'
 import type { KeyboardEvent } from 'react'
-import type { AskFn } from '../hooks/useAsk'
-import { setDraft } from '../store/chatSlice'
-import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { cx } from '../utils/cx'
-import { ArrowUpIcon } from './icons'
 import styles from './Composer.module.css'
+import type { AskFn } from '../../hooks/useAsk'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { setDraft } from '../../store/chatSlice'
+import { cx } from '../../utils/cx'
+import { ArrowUpIcon } from '../icons'
 
 const MAX_HEIGHT = 200
 
@@ -13,6 +13,7 @@ interface ComposerProps {
   onSubmit: AskFn
   busy: boolean
   error: string | null
+  /** При смене значения поле получает фокус (открытие/смена диалога). */
   focusKey: string
 }
 
@@ -21,6 +22,7 @@ export default function Composer({ onSubmit, busy, error, focusKey }: ComposerPr
   const draft = useAppSelector((s) => s.chat.draft)
   const ref = useRef<HTMLTextAreaElement>(null)
 
+  // Автовысота поля до MAX_HEIGHT.
   useEffect(() => {
     const el = ref.current
     if (!el) return

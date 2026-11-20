@@ -1,8 +1,9 @@
 import type { ReactNode } from 'react'
-import { cx } from '../utils/cx'
 import styles from './StateMessage.module.css'
+import { cx } from '../../utils/cx'
 
 interface StateMessageProps {
+  /** Вертикальная раскладка с заголовком и действием; без неё — строка со спиннером. */
   column?: boolean
   children: ReactNode
 }

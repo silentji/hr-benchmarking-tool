@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
 import { NavLink } from 'react-router-dom'
-import { fetchConversations } from '../store/conversationsSlice'
-import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { cx } from '../utils/cx'
-import { groupConversations } from '../utils/groupConversations'
 import styles from './HistoryList.module.css'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { groupConversations } from '../../utils/groupConversations'
+import { fetchConversations } from '../../store/conversationsSlice'
+import { cx } from '../../utils/cx'
 
 export default function HistoryList() {
   const dispatch = useAppDispatch()

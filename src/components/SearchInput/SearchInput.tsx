@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { setQuery } from '../store/conversationsSlice'
-import { SearchIcon } from './icons'
+import { setQuery } from '../../store/conversationsSlice'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { SearchIcon } from '../icons'
 import styles from './SearchInput.module.css'
 
 export default function SearchInput() {

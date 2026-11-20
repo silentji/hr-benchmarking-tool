@@ -1,15 +1,13 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { setDraft } from '../store/chatSlice'
-import { setQuery } from '../store/conversationsSlice'
-import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { closeSidebar } from '../store/uiSlice'
-import { cx } from '../utils/cx'
-import HistoryList from './HistoryList'
-import SearchInput from './SearchInput'
-import { BarChartIcon, DatabaseIcon, PlusIcon } from './icons'
+import { setDraft } from '../../store/chatSlice'
+import { setQuery } from '../../store/conversationsSlice'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { closeSidebar } from '../../store/uiSlice'
+import { cx } from '../../utils/cx'
+import { BarChartIcon, DatabaseIcon, PlusIcon } from '../icons'
 import styles from './Sidebar.module.css'
-
-const isMock = import.meta.env.VITE_USE_MOCKS === 'true'
+import SearchInput from '../SearchInput/SearchInput'
+import HistoryList from '../HistoryList/HistoryList'
 
 export default function Sidebar() {
   const dispatch = useAppDispatch()
@@ -37,8 +35,7 @@ export default function Sidebar() {
       <SearchInput />
 
       <HistoryList />
-
-      <div className={styles.bottom}>
+      <div className={styles.navLinks}>
         <NavLink to="/data" className={navClass}>
           <DatabaseIcon />
           Данные
@@ -48,13 +45,11 @@ export default function Sidebar() {
           Дашборды
         </NavLink>
         <div className={styles.caption}>Анализ агрегированных данных</div>
-        {isMock && <div className={styles.mock}>Демо-режим: моковые данные</div>}
-
-        <button type="button" className={styles.account} title="Аккаунт" aria-label="Аккаунт">
-          <span className={styles.avatar}>А</span>
-          <span className={styles.accountName}>Аккаунт</span>
-        </button>
       </div>
+      <button type="button" className={styles.account} title="Аккаунт" aria-label="Аккаунт">
+        <span className={styles.avatar}>HR</span>
+        <span className={styles.accountName}>Аккаунт</span>
+      </button>
     </aside>
   )
 }

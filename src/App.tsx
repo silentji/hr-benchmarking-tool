@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import styles from './App.module.css'
-import Sidebar from './components/Sidebar'
+import Sidebar from './components/Sidebar/Sidebar'
 import { BarChartIcon, DatabaseIcon } from './components/icons'
 import ChatPage from './pages/ChatPage'
 import StubPage from './pages/StubPage'

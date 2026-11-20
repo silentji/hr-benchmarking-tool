@@ -18,6 +18,23 @@ export interface TableData {
   rows: TableRow[]
 }
 
+export interface ChartSeries {
+  key: string
+  label: string
+}
+
+export interface ChartCategory {
+  label: string
+  values: Record<string, number | null>
+}
+
+export interface ChartData {
+  title: string | null
+  unit: string
+  series: ChartSeries[]
+  categories: ChartCategory[]
+}
+
 export interface NoticeData {
   kind: 'info' | 'warning'
   text: string
@@ -45,6 +62,7 @@ export interface AssistantChatMessage {
   title: string | null
   text: string
   table: TableData | null
+  chart: ChartData | null
   notice: NoticeData | null
   actions: MessageAction[]
   isSaved: boolean
